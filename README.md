@@ -1,60 +1,33 @@
-<p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
-    </a>
-    <h1 align="center">Yii 2 Advanced Project Template</h1>
-    <br>
-</p>
+**Установка приложения**
 
-Yii 2 Advanced Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-developing complex Web applications with multiple tiers.
+1. Сделать клон с репозитория.
 
-The template includes three tiers: front end, back end, and console, each of which
-is a separate Yii application.
+`git clone https://github.com/sofq3mail/sof.git`
 
-The template is designed to work in a team development environment. It supports
-deploying the application in different environments.
+2. В папке с проектом инициализировать приложение (выбираем Development)
 
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
+`php init`
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Build Status](https://travis-ci.org/yiisoft/yii2-app-advanced.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-advanced)
+3. Создать БД и залить в неё бэкап (dump.sql)
 
-DIRECTORY STRUCTURE
--------------------
+4. Заполнить данные БД (имя, логин и пароль) в файл  `\common\config\main-local.php`
 
-```
-common
-    config/              contains shared configurations
-    mail/                contains view files for e-mails
-    models/              contains model classes used in both backend and frontend
-    tests/               contains tests for common classes    
-console
-    config/              contains console configurations
-    controllers/         contains console controllers (commands)
-    migrations/          contains database migrations
-    models/              contains console-specific model classes
-    runtime/             contains files generated during runtime
-backend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains backend configurations
-    controllers/         contains Web controller classes
-    models/              contains backend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for backend application    
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-frontend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains frontend configurations
-    controllers/         contains Web controller classes
-    models/              contains frontend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for frontend application
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-    widgets/             contains frontend widgets
-vendor/                  contains dependent 3rd-party packages
-environments/            contains environment-based overrides
-```
+5. В коре сайта через композер подгрузить вендоры. 
+
+`composer update`
+
+6. В файле `\console\controllers\CurrencyController.php` заменить свойство $url на свой адрес.
+
+7. Основной домен (test.loc) должен смотреть в директорию `frontend\web`, а домен для backend (backend.test.loc) в директорию `backend\web`
+
+**Как пользоваться?**
+
+Весь функционал находится на backend.test.loc. (Логин: admin Пароль: receptor)
+
+Управление биржами  - backend.test.loc/exchange
+
+Управление настройками - backend.test.loc/settings
+
+1. Чтобы задать новое распределение нужно в настройках изменить переменную _new_distribution_
+
+2. После того как будет создано новое распределение нужно в консоли в папке с приложением запустить команду `php yii currency` Она уже сама всё пересчитает. Результаты пересчёта можно посмотреть во вкладки с биржами
